@@ -435,3 +435,70 @@ body.light-mode #chat-form button[type="submit"] {
   width: 45px;
   height: 45px;
 }
+
+/* Mobile responsive styles */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .sidebar {
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 10px;
+    box-shadow: none;
+    gap: 8px;
+  }
+
+  .sidebar-header,
+  .sidebar label,
+  .sidebar input,
+  .sidebar select,
+  .groq-note,
+  #api-warning,
+  #api-success {
+    flex: 1 1 100%;
+    margin-bottom: 8px;
+  }
+
+  .chat-area {
+    width: 100%;
+    height: auto;
+    padding: 8px 0 80px;
+  }
+
+  #response {
+    margin: 0;
+    width: 100%;
+  }
+
+  #chat-form {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: #181a20;
+    display: flex;
+    gap: 8px;
+    padding: 8px;
+    box-shadow: 0 -2px 8px rgba(0,0,0,0.15);
+  }
+
+  body.light-mode #chat-form {
+    background: #fff;
+  }
+
+  #user-input {
+    flex: 1;
+    width: auto;
+  }
+
+  #toggle-params {
+    flex-shrink: 0;
+  }
+
+  #chat-form button[type="submit"] {
+    flex-shrink: 0;
+  }
+}
