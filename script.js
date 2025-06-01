@@ -54,8 +54,8 @@ function renderChatHistory() {
   let history = JSON.parse(sessionStorage.getItem('chatHistory') || '[]');
   responseBox.innerHTML = '';
   for (const msg of history) {
-    responseBox.innerHTML += `<div class="user-row"><div class="bubble user">${msg.user}<img src='/userlogo.jpg' alt='User Logo' class='response-bot-logo' /></div></div>`;
-    responseBox.innerHTML += `<div class="ai-row"><div class="bubble ai"><img src='/botlogo.jpg' alt='Bot Logo' class='response-bot-logo' />${msg.ai}</div></div>`;
+    responseBox.innerHTML += `<div class="user-row"><div class="bubble user">${msg.user}<img src='/public/userlogo.jpg' alt='User Logo' class='response-bot-logo' /></div></div>`;
+    responseBox.innerHTML += `<div class="ai-row"><div class="bubble ai"><img src='/public/botlogo.jpg' alt='Bot Logo' class='response-bot-logo' />${msg.ai}</div></div>`;
   }
 }
 
