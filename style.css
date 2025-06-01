@@ -1,0 +1,437 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #181a20;
+  height: 100vh;
+  display: flex;
+  color: #f1f1f1;
+}
+
+.container {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  gap: 24px;
+}
+
+.sidebar {
+  width: 270px;
+  color: #f1f1f1;
+  padding: 24px 20px 20px 20px;
+  box-shadow: 2px 0 8px rgba(0,0,0,0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  justify-content: flex-start;
+}
+
+.sidebar-title {
+  margin: 0;
+  font-size: 1.6em;
+  color: #fff;
+}
+
+.sidebar h1 {
+  font-size: 30px;
+  margin-bottom: -5px;
+  color: #fff;
+}
+
+.sidebar label {
+  display: block;
+  margin: 14px 0 4px;
+  font-size: 14px;
+  color: #b0b3b8;
+}
+
+.sidebar input,
+.sidebar select {
+  width: 100%;
+  padding: 8px;
+  font-size: 14px;
+  border-radius: 4px;
+  margin-bottom: 4px;
+  background: #23262f;
+  color: #f1f1f1;
+  border: 1px solid #353945;
+}
+
+.sidebar input[type="range"] {
+  width: 100%;
+  background: transparent;
+}
+
+.sidebar span {
+  font-size: 12px;
+  display: block;
+  text-align: right;
+  margin-bottom: 8px;
+  color: #b0b3b8;
+}
+
+#toggle-params {
+  background: #23262f;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 22px;
+  margin-left: 0;
+  margin-right: 10px;
+  margin-top: 0;
+  margin-bottom: 5px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  transition: background 0.2s;
+  align-self: center;
+  position: relative;
+}
+
+#toggle-params:hover {
+  background: #007bff;
+  color: #fff;
+}
+
+.groq-note {
+  color: #676b78;
+  margin: 0 0 8px 0;
+  font-size: 13px;
+}
+
+#api-warning {
+  color: #ff4d4f;
+  font-size: 13px;
+  display: none;
+  margin-bottom: 10px;
+}
+
+#api-success {
+  color: #2ecc40;
+  font-size: 13px;
+  display: none;
+  margin-bottom: 10px;
+}
+
+#param-settings {
+  display: none;
+  margin-top: 10px;
+}
+
+.chat-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 0 0 0 8px;
+  height: 100vh;
+  justify-content: flex-end;
+  position: relative;
+}
+
+.chat-area-header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 8px 16px 0 0;
+  position: sticky;
+  top: 0;
+  background: #181a20;
+  z-index: 20;
+}
+
+body.light-mode .chat-area-header {
+  background: #fff;
+  color: #111;
+}
+
+#response {
+  flex: 1;
+  margin-left: 8px;
+  overflow-y: auto;
+  padding-bottom: 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+#param-panel {
+  display: none;
+  position: absolute;
+  bottom: 60px;
+  right: 0;
+  min-width: 320px;
+  max-width: 400px;
+  background: #23262f;
+  border-radius: 12px;
+  padding: 24px 28px 18px 28px;
+  padding-top: 38px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.18);
+  z-index: 100;
+  align-items: center;
+  text-align: center;
+}
+
+#param-panel .mode-switcher {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+#param-panel .mode-switcher button {
+  padding: 6px 18px;
+  border-radius: 8px;
+  border: 1px solid #b0b3b8;
+  background: #23262f;
+  color: #fff;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+#param-panel .mode-switcher button.active {
+  background: #fff;
+  color: #23262f;
+  border: 1px solid #23262f;
+}
+
+body.light-mode {
+  background: #fff;
+  color: #111;
+}
+body.light-mode .sidebar {
+  background: #fff;
+  color: #111;
+}
+body.light-mode .sidebar-header h1,
+body.light-mode .sidebar-title,
+body.light-mode .sidebar label,
+body.light-mode .sidebar h1,
+body.light-mode .groq-note,
+body.light-mode #api-warning,
+body.light-mode #api-success {
+  color: #111 !important;
+}
+body.light-mode .sidebar input,
+body.light-mode .sidebar select {
+  background: #f5f5f5;
+  color: #111;
+  border: 1px solid #bbb;
+}
+body.light-mode .chat-area {
+  background: #fff;
+  color: #111;
+}
+body.light-mode #response {
+  color: #111;
+}
+body.light-mode .bubble.ai {
+  background: #fff !important;
+  color: #111 !important;
+  border-bottom-left-radius: 4px;
+}
+body.light-mode .bubble.user {
+  background: linear-gradient(135deg, #e0e0e0 25%, #45a164 70%) !important;
+  color: #111 !important;
+}
+body.light-mode #chat-form input[type="text"] {
+  background: #f5f5f5;
+  color: #111 !important;
+  border: 1px solid #bbb;
+}
+body.light-mode #chat-form button[type="submit"] {
+  background: linear-gradient(135deg, #e0e0e0 25%, #45a164 70%);
+  color: #111;
+}
+body.light-mode #param-panel {
+  background: #fff;
+  color: #111;
+}
+body.light-mode #param-panel h3,
+body.light-mode #param-panel label,
+body.light-mode #param-panel span {
+  color: #111;
+}
+body.light-mode #param-panel .mode-switcher button {
+  background: #fff;
+  color: #23262f;
+  border: 1px solid #b0b3b8;
+}
+body.light-mode #param-panel .mode-switcher button.active {
+  background: #23262f;
+  color: #fff;
+  border: 1px solid #23262f;
+}
+
+/* Visually hidden for accessibility */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}
+
+:root {
+  --accent: #8e24aa;
+  --main-bg: #f5f5f7;
+  --sidebar-bg: #23262f;
+  --bg: #fff;
+  --bot-bubble: #e0e0e0;
+  --user-bubble: #43a047;
+  --bot-text: #333;
+  --user-text: #fff;
+  --suggested-border: #43a047;
+  --suggested-bg: #fff;
+  --suggested-text: #43a047;
+}
+
+.bot-logo {
+  width: 50px;
+  height: 50px;
+  border-radius: 90%;
+}
+
+.response-bot-logo {
+  width: 28px;
+  height: 28px;
+  margin-bottom:auto;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 0;
+  vertical-align: middle;
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.10);
+  display: inline-block;
+}
+
+.bubble.user, .bubble.ai {
+  margin: 0;
+  max-width: 70%;
+  min-width: 48px;
+  width: fit-content;
+  padding: 14px 18px;
+  border-radius: 18px;
+  font-size: 16px;
+  line-height: 1.5;
+  word-break: break-word;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-row {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: flex-end;
+  justify-content: flex-end;
+  margin-top: 12px;
+}
+.user-row .response-bot-logo {
+  margin-left: 0;
+  margin-right: 0;
+  align-self: flex-end;
+}
+.user-row .bubble.user {
+  margin-right: 0;
+  margin-left: auto;
+  align-self: flex-end;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ai-row {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: flex-start;
+  margin-top: 12px;
+}
+.ai-row .response-bot-logo {
+  margin-right: 0;
+  margin-left: 0;
+  align-self: flex-start;
+}
+.ai-row .bubble.ai {
+  margin-left: 0;
+  margin-right: 0;
+  align-self: flex-start;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#chat-form {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: 8px;
+  position: absolute;
+  bottom: 24px;
+  left: 0;
+  right: 0;
+  padding: 0 24px 0 0;
+  justify-content: flex-start;
+  background: none;
+}
+
+#chat-form input[type="text"] {
+  flex: 1;
+  padding: 14px 16px;
+  font-size: 16px;
+  border-radius: 18px;
+  background: #23262f;
+  color: #fff !important;
+  outline: none;
+  border: 1px solid #353945;
+}
+
+body.light-mode #chat-form input[type="text"] {
+  background: #f5f5f5;
+  color: #111 !important;
+  border: 1px solid #bbb;
+}
+
+#chat-form button[type="submit"] {
+  padding: 14px 28px;
+  background: linear-gradient(135deg, #dedfe1 25%, #45a164 70%);
+  border: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 18px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.2s;
+  margin-right: 0;
+}
+
+body.light-mode #chat-form button[type="submit"] {
+  background: linear-gradient(135deg, #e0e0e0 25%, #45a164 70%);
+  color: #111;
+}
+
+#chat-form button#toggle-params {
+  background: transparent !important;
+  border: none;
+  box-shadow: none;
+  margin-left: 8px;
+  padding: 0;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#toggle-params img {
+  width: 45px;
+  height: 45px;
+}
