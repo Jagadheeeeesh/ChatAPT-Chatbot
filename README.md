@@ -9,7 +9,7 @@ Minimal AI chatbot interface using the Groq API.
 ## Prerequisites
 
 - A modern web browser (Chrome, Firefox, Edge, etc.)
-- A valid Groq API key
+- A valid Groq API key (If not created visit https://console.groq.com/keys and create an api key)
 
 ## Setup
 
