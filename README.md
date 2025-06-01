@@ -1,2 +1,28 @@
-# ChatAPT-Chatbot
-ChatAPT is a fast and minimal AI chatbot web app powered by the Groq API, built with pure HTML, CSS, and JavaScript. It allows users to interact with large language models like LLaMA or Mixtral in a sleek, simple interface — ideal for learning, personal use, or quick deployments.
+<!-- README.md for ChatAPT-Chatbot -->
+
+# ChatAPT Chatbot
+
+**Live Demo:** https://jagadheeeeesh.github.io/ChatAPT-Chatbot
+
+Minimal AI chatbot interface using the Groq API.
+
+## Setup
+
+```powershell
+git clone https://github.com/Jagadheeeeesh/ChatAPT-Chatbot.git
+cd ChatAPT-Chatbot
+```
+
+Open `index.html` in your browser and enter your Groq API key.
+
+## Usage
+
+Type a message, press **Send**, and view AI responses.
+
+## License
+
+See [LICENSE](LICENSE) for details.
+
+---
+
+_Built with Love._
