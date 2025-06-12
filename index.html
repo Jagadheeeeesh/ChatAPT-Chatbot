@@ -19,6 +19,9 @@
       <div class="groq-note">*Will Only support Groq API</div>
       <div id="api-warning">API key required!</div>
       <div id="api-success">API key saved!</div>
+      <label for="doc-upload">Upload Text File</label>
+      <input id="doc-upload" type="file" multiple accept=".txt,.md,.docx" />
+      <div id="doc-list"></div>
       <label for="model">Model</label>
       <select id="model">
         <option value="gemma2-9b-it">Gemma 2 9B IT</option>
@@ -55,6 +58,11 @@
     </main>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
+  <script>
+    // Required by pdf.js
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.worker.min.js';
+  </script>
   <script src="script.js"></script>
 </body>
 </html>

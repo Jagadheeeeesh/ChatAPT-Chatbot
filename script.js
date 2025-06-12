@@ -13,6 +13,8 @@ const maxTokensInput = document.getElementById("max_tokens");
 const toggleParamsBtn = document.getElementById("toggle-params");
 const paramPanel = document.getElementById("param-panel");
 const closeParamPanelBtn = document.getElementById("close-param-panel");
+const docUpload = document.getElementById('doc-upload');
+const docList = document.getElementById('doc-list');
 
 // Parameters are now fixed for low cost
 const DEFAULT_TEMPERATURE = 0.2;
@@ -43,6 +45,7 @@ if (closeParamPanelBtn && paramPanel) {
     paramPanel.style.display = "none";
   });
 }
+
 // Store chat history in sessionStorage
 function saveChatHistory(userMsg, aiMsg) {
   let history = JSON.parse(sessionStorage.getItem('chatHistory') || '[]');
@@ -85,6 +88,28 @@ apiKeyInput.addEventListener('input', () => {
   }
 });
 
+let documents = [];
+
+docUpload.addEventListener('change', async (e) => {
+  documents = [];
+  docList.innerHTML = '';
+  const files = Array.from(e.target.files);
+
+  for (const file of files) {
+    if (file.name.endsWith('.txt')) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const content = reader.result;
+        documents.push({ name: file.name, content });
+        docList.innerHTML += `<div>${file.name}</div>`;
+      };
+      reader.readAsText(file);
+    } else {
+      docList.innerHTML += `<div style="color: red;">Unsupported file type: ${file.name}</div>`;
+    }
+  }
+});
+
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
   const prompt = input.value.trim();
@@ -102,12 +127,22 @@ form.addEventListener("submit", async (e) => {
     apiSuccess.style.display = "block";
   }
   responseBox.innerHTML += `<div class="user-row"><div class="bubble user">${prompt}<img src='/userlogo.jpg' alt='User Logo' class='response-bot-logo' /></div></div><div class="ai-row"><div class="bubble ai"><img src='/botlogo.jpg' alt='Bot Logo' class='response-bot-logo' /><em>Thinking...</em></div></div>`;
+  
+  // Build messages array with documents context if any
+  let systemContent = "You are a helpful AI assistant.";
+  if (documents.length > 0) {
+    const ctx = documents.map(d => `Document Name: ${d.name}\\nContent:\\n${d.content}`).join("\\n---\\n");
+    systemContent += `\\n\\nYou have the following document(s) to reference for the user's query. Use their content to answer:\\n${ctx}`;
+  }
+
+  const messages = [
+    { role: "system", content: systemContent },
+    { role: "user", content: prompt }
+  ];
+
   const payload = {
     model: modelSelect.value,
-    messages: [
-      { role: "system", content: "You are a helpful AI assistant." },
-      { role: "user", content: prompt }
-    ],
+    messages,
     temperature: parseFloat(tempSlider.value),
     top_p: parseFloat(topPSlider.value),
     max_tokens: parseInt(maxTokensInput.value)
