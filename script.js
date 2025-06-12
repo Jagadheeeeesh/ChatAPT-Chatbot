@@ -126,13 +126,20 @@ form.addEventListener("submit", async (e) => {
     apiWarning.style.display = "none";
     apiSuccess.style.display = "block";
   }
-  responseBox.innerHTML += `<div class="user-row"><div class="bubble user">${prompt}<img src='/userlogo.jpg' alt='User Logo' class='response-bot-logo' /></div></div><div class="ai-row"><div class="bubble ai"><img src='/botlogo.jpg' alt='Bot Logo' class='response-bot-logo' /><em>Thinking...</em></div></div>`;
-  
+
+  // Display user message and logo immediately
+  const userMessageHTML = `<div class="user-row"><div class="bubble user">${prompt}<img src='public/userlogo.jpg' alt='User Logo' class='response-bot-logo' /></div></div>`;
+  responseBox.innerHTML += userMessageHTML;
+
+  // Display bot logo and "Thinking..." immediately
+  const botThinkingHTML = `<div class="ai-row"><div class="bubble ai"><img src='public/botlogo.jpg' alt='Bot Logo' class='response-bot-logo' /><em>Thinking...</em></div></div>`;
+  responseBox.innerHTML += botThinkingHTML;
+
   // Build messages array with documents context if any
   let systemContent = "You are a helpful AI assistant.";
   if (documents.length > 0) {
-    const ctx = documents.map(d => `Document Name: ${d.name}\\nContent:\\n${d.content}`).join("\\n---\\n");
-    systemContent += `\\n\\nYou have the following document(s) to reference for the user's query. Use their content to answer:\\n${ctx}`;
+    const ctx = documents.map(d => `Document Name: ${d.name}\nContent:\n${d.content}`).join("\n---\n");
+    systemContent += `\n\nYou have the following document(s) to reference for the user's query. Use their content to answer:\n${ctx}`;
   }
 
   const messages = [
@@ -161,6 +168,11 @@ form.addEventListener("submit", async (e) => {
       // Save and render chat history
       saveChatHistory(prompt, data.choices[0].message.content);
       renderChatHistory();
+
+      // Scroll to the bottom of the chat after bot's response is rendered
+      setTimeout(() => {
+        responseBox.scrollTop = responseBox.scrollHeight;
+      }, 0);
     } else {
       responseBox.innerHTML += `<div class="bubble ai">Error: ${data.error ? data.error.message : 'Unknown error'}</div>`;
     }
