@@ -19,7 +19,7 @@ const docList = document.getElementById('doc-list');
 // Parameters are now fixed for low cost
 const DEFAULT_TEMPERATURE = 0.2;
 const DEFAULT_TOP_P = 0.7;
-const DEFAULT_MAX_TOKENS = 256;
+const DEFAULT_MAX_TOKENS = 400;
 
 document.getElementById("temp-val").textContent = tempSlider.value;
 tempSlider.oninput = () => {
