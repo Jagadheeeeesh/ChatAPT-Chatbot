@@ -4,7 +4,9 @@
   "description": "Backend for ChatAPT to securely handle API calls.",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 0",
+    "build": "echo \"No build specified\""
   },
   "dependencies": {
     "axios": "^1.6.8",
