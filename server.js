@@ -41,6 +41,10 @@ app.post('/chat', async (req, res) => {
   }
 });
 
-app.listen(port, () => {
-  console.log(`Server listening at http://localhost:${port}`);
-});
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(port, () => {
+    console.log(`Server listening at http://localhost:${port}`);
+  });
+}
+
+module.exports = app;
