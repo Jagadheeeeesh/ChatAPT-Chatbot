@@ -14,13 +14,8 @@
         <h1 class="sidebar-title">ChatAPT</h1>
       </div>
 
-      <label for="api-key">API Key</label>
-      <input id="api-key" type="password" placeholder="Enter your API key" autocomplete="off" />
-      <div class="groq-note">*Will Only support Groq API</div>
-      <div id="api-warning">API key required!</div>
-      <div id="api-success">API key saved!</div>
-      <label for="doc-upload">Upload Text File</label>
-      <input id="doc-upload" type="file" multiple accept=".txt,.md,.docx" />
+      <label for="doc-upload">Upload Document</label>
+      <input id="doc-upload" type="file" multiple accept=".txt,.md,.docx,.pdf" />
       <div id="doc-list"></div>
       <label for="model">Model</label>
       <select id="model">
@@ -52,7 +47,7 @@
           <input id="top_p" type="range" min="0" max="1" step="0.01" value="0.7" />
           <span id="top_p-val">0.7</span>
           <label for="max_tokens">Max Tokens</label>
-          <input id="max_tokens" type="number" min="1" max="4096" value="400" />
+          <input id="max_tokens" type="number" min="1" max="600" value="200" />
         </div>
       </form>
     </main>

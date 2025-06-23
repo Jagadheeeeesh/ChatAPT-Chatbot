@@ -1,9 +1,6 @@
 const form = document.getElementById("chat-form");
 const input = document.getElementById("user-input");
 const responseBox = document.getElementById("response");
-const apiKeyInput = document.getElementById("api-key");
-const apiWarning = document.getElementById("api-warning");
-const apiSuccess = document.getElementById("api-success");
 const modelSelect = document.getElementById("model");
 const paramSettings = document.getElementById("param-settings");
 const toggleParams = document.getElementById("toggle-params");
@@ -66,26 +63,9 @@ function renderChatHistory() {
 
 window.addEventListener('DOMContentLoaded', () => {
   renderChatHistory();
-  const savedKey = sessionStorage.getItem('groqApiKey');
-  if (savedKey) {
-    apiKeyInput.value = savedKey;
-    apiSuccess.style.display = 'block';
-    apiWarning.style.display = 'none';
-  }
   const theme = sessionStorage.getItem('chatapt-theme');
   if (theme === 'light') setMode('light');
   else setMode('dark');
-});
-
-apiKeyInput.addEventListener('input', () => {
-  if (apiKeyInput.value.trim()) {
-    apiWarning.style.display = 'none';
-    apiSuccess.style.display = 'block';
-    sessionStorage.setItem('groqApiKey', apiKeyInput.value.trim());
-  } else {
-    apiSuccess.style.display = 'none';
-    sessionStorage.removeItem('groqApiKey');
-  }
 });
 
 let documents = [];
@@ -113,19 +93,8 @@ docUpload.addEventListener('change', async (e) => {
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
   const prompt = input.value.trim();
-  const apiKey = apiKeyInput.value.trim();
   if (!prompt) return;
   input.value = ''; // Immediately clear input on submit
-  if (!apiKey) {
-    apiWarning.style.display = "block";
-    apiSuccess.style.display = "none";
-    responseBox.innerHTML = '';
-    responseBox.innerHTML = `<div class="bubble ai">Please enter your Groq API key!</div>`;
-    return;
-  } else {
-    apiWarning.style.display = "none";
-    apiSuccess.style.display = "block";
-  }
 
   // Display user message and logo immediately
   const userMessageHTML = `<div class="user-row"><div class="bubble user">${prompt}<img src='public/userlogo.jpg' alt='User Logo' class='response-bot-logo' /></div></div>`;
@@ -155,10 +124,9 @@ form.addEventListener("submit", async (e) => {
     max_tokens: parseInt(maxTokensInput.value)
   };
   try {
-    const res = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+    const res = await fetch("/chat", {
       method: "POST",
       headers: {
-        "Authorization": `Bearer ${apiKey}`,
         "Content-Type": "application/json"
       },
       body: JSON.stringify(payload)
