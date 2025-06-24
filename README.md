@@ -2,7 +2,7 @@
 
 # ChatAPT Chatbot
 
-**Live Demo:** https://jagadheeeeesh.github.io/ChatAPT-Chatbot
+**Live Demo:** https://chatapt-chatbot-production.up.railway.app/
 
 Minimal AI chatbot interface using the Groq API.
 
