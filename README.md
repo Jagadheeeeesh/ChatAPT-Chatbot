@@ -6,20 +6,12 @@
 
 Minimal AI chatbot interface using the Groq API.
 
-## Prerequisites
-
-- A modern web browser (Chrome, Firefox, Edge, etc.)
-- A valid Groq API key (If not created visit https://console.groq.com/keys and create an api key)
-
 ## Setup
 
 ```powershell
 git clone https://github.com/Jagadheeeeesh/ChatAPT-Chatbot.git
 cd ChatAPT-Chatbot
 ```
-
-- Open `index.html` in your browser.
-- Enter your Groq API key in the API key box.
 
 ## Usage
 
